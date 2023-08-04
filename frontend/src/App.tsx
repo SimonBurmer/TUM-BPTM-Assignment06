@@ -27,7 +27,7 @@ function App() {
 
   useEffect(() => {
     console.log("Try to connect to the server");
-    const eventSource = new EventSource('http://localhost:8080/sse');
+    const eventSource = new EventSource('./sse');
 
     eventSource.onmessage = (event) => {
       const data = JSON.parse(event.data);

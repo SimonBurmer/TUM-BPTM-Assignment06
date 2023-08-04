@@ -1,3 +1,4 @@
+#! /usr/bin/python3
 import os
 os.environ["GEVENT_SUPPORT"] = "True"
 
@@ -94,5 +95,5 @@ def test():
     print("---------------------")
 
 if __name__ == '__main__':
-    #run(app, host='::', port=24209)
-    run(app, host='localhost', port=8080, server='gevent')
+    run(app, host='::', port=24209, server='gevent')
+    #run(app, host='localhost', port=8080, server='gevent')
