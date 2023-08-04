@@ -11,7 +11,8 @@ import time
 
 app = Bottle()
 
-monitor_event =  {}
+monitor_event =  {"Info": "This is a ping message from the server"}
+event_storage = []
 
 @app.route('/')
 def serve_index():
@@ -31,17 +32,31 @@ def sse():
     response.content_type = 'text/event-stream'
     response.cache_control = 'no-cache'
     response.set_header("X-Accel-Buffering", "no")
-    send_data = None
+    send_data = {"Info": "This is a ping message from the server"}
 
+    #push all data from storage to new connection 
+    for event in event_storage:
+        yield f"data: {json.dumps(event)}\n\n"
+        print("Sending Storage Element:", event)
+
+    #sse loop
     while True:
         print("Sending data:", monitor_event)
-        yield f"data: {json.dumps(monitor_event)}\n\n"
+
+        if monitor_event != send_data:
+            yield f"data: {json.dumps(monitor_event)}\n\n"
+            monitor_event = send_data
+        else:
+            yield f"data: {json.dumps(send_data)}\n\n"
+
         time.sleep(2)  
 
 
 # Gets called from CPEE
 @app.route('/log', method='POST')
 def log():
+    global monitor_event
+    global event_storage
 
     # Reused from logger assignment
     print("-------------------------")
@@ -60,6 +75,7 @@ def log():
                 if "data" in notification["content"]["received"][0]:
                     value = yaml.safe_load(notification["content"]["received"][0]["data"])["value"]
                     monitor_event = {'Id': notification["content"]["activity"], 'Name': notification["content"]["label"], 'Value': value, 'Time':notification["timestamp"]}
+                    #event_storage.append[monitor_event]
                     print("MONITOR EVENT:")
                     print(monitor_event)
                     print("---")
@@ -68,11 +84,13 @@ def log():
 @app.route('/test', method='POST')
 def test():
     global monitor_event
+    global event_storage
 
     payload = request.json
     print("---------------------")
     print("Data:", payload) 
     monitor_event = payload
+    #event_storage.append[monitor_event]
     print("---------------------")
 
 if __name__ == '__main__':

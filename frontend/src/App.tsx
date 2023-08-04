@@ -44,17 +44,17 @@ function App() {
     if (message) {
       if (message.Id === "a8"){
         setQualityData(prevData => [...prevData, message.value]);
-        setQualityLabel(prevData => [...prevData, message.Time]);
+        setQualityLabel(prevData => [...prevData, "Measurement: " + (qualityLabel.length).toString()]);
         console.log("Set quality data")
       }
       if (message.Id === "a6"){
         setAvailabilityData(prevData => [...prevData, message.value]);
-        setAvailabilityLabel(prevData => [...prevData, message.Time]);
+        setAvailabilityLabel(prevData => [...prevData,"Measurement: " + (availabilityLabel.length).toString()]);
         console.log("Set availability data")
       }
       if (message.Id === "a7"){
         setPerformanceData(prevData => [...prevData, message.value]);
-        setPerformanceLabel(prevData => [...prevData, message.Time]);
+        setPerformanceLabel(prevData => [...prevData,"Measurement: " +(performanceLabel.length).toString()]);
         console.log("Set performance data")
       }
     }
