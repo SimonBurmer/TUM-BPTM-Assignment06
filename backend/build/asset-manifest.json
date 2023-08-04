@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "https://lehre.bpm.in.tum.de/ports/24209/static/css/main.073c9b0a.css",
-    "main.js": "https://lehre.bpm.in.tum.de/ports/24209/static/js/main.a474b222.js",
+    "main.js": "https://lehre.bpm.in.tum.de/ports/24209/static/js/main.3608f42e.js",
     "static/js/787.cda612ba.chunk.js": "https://lehre.bpm.in.tum.de/ports/24209/static/js/787.cda612ba.chunk.js",
     "index.html": "https://lehre.bpm.in.tum.de/ports/24209/index.html",
     "main.073c9b0a.css.map": "https://lehre.bpm.in.tum.de/ports/24209/static/css/main.073c9b0a.css.map",
-    "main.a474b222.js.map": "https://lehre.bpm.in.tum.de/ports/24209/static/js/main.a474b222.js.map",
+    "main.3608f42e.js.map": "https://lehre.bpm.in.tum.de/ports/24209/static/js/main.3608f42e.js.map",
     "787.cda612ba.chunk.js.map": "https://lehre.bpm.in.tum.de/ports/24209/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.a474b222.js"
+    "static/js/main.3608f42e.js"
   ]
 }

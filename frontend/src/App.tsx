@@ -7,36 +7,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { LineChart } from '@mui/x-charts/LineChart';
 
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
-
-
-
-
-
-
 interface MonitorMessages {
   Id: string;
-  value: string;
+  Value: string;
   Name: string;
   Time: string;
 }
@@ -74,17 +47,17 @@ function App() {
 
     if (message) {
       if (message.Id === "a8"){
-        setQualityData(prevData => [...prevData, Number(message.value)]);
+        setQualityData(prevData => [...prevData, Number(message.Value)]);
         setQualityLabel(prevData => [...prevData, (qualityLabel.length).toString()]);
         console.log("Set quality data")
       }
       if (message.Id === "a6"){
-        setAvailabilityData(prevData => [...prevData, Number(message.value)]);
+        setAvailabilityData(prevData => [...prevData, Number(message.Value)]);
         setAvailabilityLabel(prevData => [...prevData,(availabilityLabel.length).toString()]);
         console.log("Set availability data")
       }
       if (message.Id === "a7"){
-        setPerformanceData(prevData => [...prevData, Number(message.value)]);
+        setPerformanceData(prevData => [...prevData, Number(message.Value)]);
         setPerformanceLabel(prevData => [...prevData,(performanceLabel.length).toString()]);
         console.log("Set performance data")
       }
@@ -148,7 +121,6 @@ function App() {
                 xAxis={[{ scaleType: 'point', data: qualityLabel }]}
               />
               <Typography sx={{mt:-2}} variant="subtitle1">Measurements</Typography>
-              <Line data={data} options={options} />
             </Box>
           </Grid>
           <Grid item xs>
