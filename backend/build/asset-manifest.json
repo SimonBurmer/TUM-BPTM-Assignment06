@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.073c9b0a.css",
-    "main.js": "/static/js/main.318c7e29.js",
-    "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
-    "index.html": "/index.html",
-    "main.073c9b0a.css.map": "/static/css/main.073c9b0a.css.map",
-    "main.318c7e29.js.map": "/static/js/main.318c7e29.js.map",
-    "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
+    "main.css": "https://lehre.bpm.in.tum.de/ports/24209/static/css/main.073c9b0a.css",
+    "main.js": "https://lehre.bpm.in.tum.de/ports/24209/static/js/main.601574e1.js",
+    "static/js/787.cda612ba.chunk.js": "https://lehre.bpm.in.tum.de/ports/24209/static/js/787.cda612ba.chunk.js",
+    "index.html": "https://lehre.bpm.in.tum.de/ports/24209/index.html",
+    "main.073c9b0a.css.map": "https://lehre.bpm.in.tum.de/ports/24209/static/css/main.073c9b0a.css.map",
+    "main.601574e1.js.map": "https://lehre.bpm.in.tum.de/ports/24209/static/js/main.601574e1.js.map",
+    "787.cda612ba.chunk.js.map": "https://lehre.bpm.in.tum.de/ports/24209/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.318c7e29.js"
+    "static/js/main.601574e1.js"
   ]
 }

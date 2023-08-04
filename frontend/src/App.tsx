@@ -14,6 +14,7 @@ interface MonitorMessages {
   Time: string;
 }
 
+// PUBLIC_URL=https://lehre.bpm.in.tum.de/ports/24209 npm run build
 
 function App() {
   const [message, setMessage] = useState<MonitorMessages>();
