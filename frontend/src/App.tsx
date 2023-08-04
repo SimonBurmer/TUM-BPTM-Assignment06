@@ -44,17 +44,17 @@ function App() {
     if (message) {
       if (message.Id === "a8"){
         setQualityData(prevData => [...prevData, parseInt(message.value)]);
-        setQualityLabel(prevData => [...prevData, "Measurement: " + (qualityLabel.length).toString()]);
+        setQualityLabel(prevData => [...prevData, (qualityLabel.length).toString()]);
         console.log("Set quality data")
       }
       if (message.Id === "a6"){
         setAvailabilityData(prevData => [...prevData, parseInt(message.value)]);
-        setAvailabilityLabel(prevData => [...prevData,"Measurement: " + (availabilityLabel.length).toString()]);
+        setAvailabilityLabel(prevData => [...prevData,(availabilityLabel.length).toString()]);
         console.log("Set availability data")
       }
       if (message.Id === "a7"){
         setPerformanceData(prevData => [...prevData, parseInt(message.value)]);
-        setPerformanceLabel(prevData => [...prevData,"Measurement: " +(performanceLabel.length).toString()]);
+        setPerformanceLabel(prevData => [...prevData,(performanceLabel.length).toString()]);
         console.log("Set performance data")
       }
     }
@@ -78,7 +78,7 @@ function App() {
         <Grid container spacing={2}>
           <Grid item xs>
             <Box sx={{ borderRadius: '16px', bgcolor: '#E5E4E2' }} >
-              <Typography variant="h5">Machine Quality</Typography>
+              <Typography sx={{mt:2}} variant="h5">Machine Quality</Typography>
               <LineChart
                 width={500}
                 height={300}
@@ -87,11 +87,12 @@ function App() {
                 ]}
                 xAxis={[{ scaleType: 'point', data: qualityLabel }]}
               />
+              <Typography sx={{mt:-2}} variant="subtitle1">Measurements</Typography>
             </Box>
           </Grid>
           <Grid item xs>
             <Box sx={{ borderRadius: '16px', bgcolor: '#E5E4E2' }} >
-              <Typography variant="h5">Machine Availability</Typography>
+              <Typography sx={{mt:2}} variant="h5">Machine Availability</Typography>
               <LineChart
                 width={500}
                 height={300}
@@ -100,11 +101,12 @@ function App() {
                 ]}
                 xAxis={[{ scaleType: 'point', data: availabilityLabel }]}
               />
+              <Typography sx={{mt:-2}} variant="subtitle1">Measurements</Typography>
             </Box>
           </Grid>
           <Grid item xs>
             <Box sx={{ borderRadius: '16px', bgcolor: '#E5E4E2' }} >
-              <Typography variant="h5">Machine Performance</Typography>
+              <Typography sx={{mt:2}} variant="h5">Machine Performance</Typography>
               <LineChart
                 width={500}
                 height={300}
@@ -113,6 +115,7 @@ function App() {
                 ]}
                 xAxis={[{ scaleType: 'point', data: performanceLabel }]}
               />
+              <Typography sx={{mt:-2}} variant="subtitle1">Measurements</Typography>
             </Box>
           </Grid>
         </Grid>
