@@ -39,6 +39,7 @@ def sse():
     for event in event_storage:
         yield f"data: {json.dumps(event)}\n\n"
         print("Sending Storage Element:", event)
+        time.sleep(0.2)  
 
     #sse loop
     while True:
@@ -76,7 +77,7 @@ def log():
                 if "data" in notification["content"]["received"][0]:
                     value = yaml.safe_load(notification["content"]["received"][0]["data"])["value"]
                     monitor_event = {'Id': notification["content"]["activity"], 'Name': notification["content"]["label"], 'Value': value, 'Time':notification["timestamp"]}
-                    #event_storage.append[monitor_event]
+                    event_storage.append(monitor_event)
                     print("MONITOR EVENT:")
                     print(monitor_event)
                     print("---")
@@ -91,9 +92,9 @@ def test():
     print("---------------------")
     print("Data:", payload) 
     monitor_event = payload
-    #event_storage.append[monitor_event]
+    event_storage.append(monitor_event)
     print("---------------------")
 
 if __name__ == '__main__':
-    run(app, host='::', port=24209, server='gevent')
-    #run(app, host='localhost', port=8080, server='gevent')
+    #run(app, host='::', port=24209, server='gevent')
+    run(app, host='localhost', port=8080, server='gevent')
