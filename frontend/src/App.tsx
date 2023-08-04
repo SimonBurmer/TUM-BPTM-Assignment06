@@ -69,6 +69,9 @@ function App() {
   }, []);
 
   useEffect(() => {
+    console.log("qualityData: ", qualityData)
+
+
     if (message) {
       if (message.Id === "a8"){
         setQualityData(prevData => [...prevData, parseInt(message.value)]);
