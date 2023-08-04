@@ -175,7 +175,7 @@ data.oeeThres = result["value"]</finalize>
             <code>
               <prepare/>
               <finalize output="result">result=result.to_h
-data.connected = result["value"]&amp;nbsp;</finalize>
+data.connected = result["value"];</finalize>
               <update output="result"/>
               <rescue output="result"/>
             </code>

@@ -4,7 +4,6 @@ os.environ["GEVENT_SUPPORT"] = "True"
 from gevent import monkey
 monkey.patch_all()
 
-
 from bottle import Bottle, request, run, static_file, response
 import yaml
 import json
@@ -12,7 +11,7 @@ import time
 
 app = Bottle()
 
-cpee_event = {}
+monitor_event =  {}
 
 @app.route('/')
 def serve_index():
@@ -26,6 +25,7 @@ def serve_static(filepath):
 # for connection with frontend clients
 @app.route('/sse', method='GET')
 def sse():
+    global monitor_event
     print("SSE connection established")
 
     response.content_type = 'text/event-stream'
@@ -34,13 +34,8 @@ def sse():
     send_data = None
 
     while True:
-        if cpee_event != send_data:
-            send_data = cpee_event
-        else:
-            send_data = {"Ping": "This is a ping message from the server"}
-
-        print("Sending data:", send_data)
-        yield f"data: {json.dumps(send_data)}\n\n"
+        print("Sending data:", monitor_event)
+        yield f"data: {json.dumps(monitor_event)}\n\n"
         time.sleep(2)  
 
 
@@ -58,7 +53,6 @@ def log():
     print("Event:", event)
     print("---")
     
-
     # I only want to monitor the activities a8,a7,a6
     if "content" in notification and "activity" in notification["content"]:
         if notification["content"]["activity"] in ["a8","a7","a6"]:
@@ -70,11 +64,16 @@ def log():
                     print(monitor_event)
                     print("---")
 
+
 @app.route('/test', method='POST')
 def test():
+    global monitor_event
+
     payload = request.json
     print("---------------------")
     print("Data:", payload) 
+    monitor_event = payload
+    print("---------------------")
 
 if __name__ == '__main__':
     #run(app, host='::', port=24209)

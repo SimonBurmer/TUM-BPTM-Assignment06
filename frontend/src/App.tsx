@@ -7,18 +7,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { LineChart } from '@mui/x-charts/LineChart';
 
-const uData = [4000, 3000, 2000, 2780, 1890, 2390, 3490];
-const pData = [2400, 1398, 9800, 3908, 4800, 3800, 4300];
-const xLabels = [
-  'Page A',
-  'Page B',
-  'Page C',
-  'Page D',
-  'Page E',
-  'Page F',
-  'Page G',
-];
-
 interface MonitorMessages {
   Id: string;
   value: number;
@@ -31,10 +19,10 @@ function App() {
   const [message, setMessage] = useState<MonitorMessages>();
   const [qualityData, setQualityData] = useState<number[]>([0]);
   const [qualityLabel, setQualityLabel] = useState<string[]>(["None"]);
-  const [availabilityData, setAvailabilityData] = useState<number[]>([]);
-  const [availabilityLabel, setAvailabilityLabel] = useState<number[]>([]);
-  const [performanceData, setPerformanceData] = useState<number[]>([]);
-  const [performanceLabel, setPerformanceLabel] = useState<number[]>([]);
+  const [availabilityData, setAvailabilityData] = useState<number[]>([0]);
+  const [availabilityLabel, setAvailabilityLabel] = useState<string[]>(["None"]);
+  const [performanceData, setPerformanceData] = useState<number[]>([0]);
+  const [performanceLabel, setPerformanceLabel] = useState<string[]>(["None"]);
 
 
   useEffect(() => {
@@ -61,12 +49,12 @@ function App() {
       }
       if (message.Id === "a6"){
         setAvailabilityData(prevData => [...prevData, message.value]);
-        setAvailabilityLabel(prevData => [...prevData, parseInt(message.Time)]);
+        setAvailabilityLabel(prevData => [...prevData, message.Time]);
         console.log("Set availability data")
       }
       if (message.Id === "a7"){
         setPerformanceData(prevData => [...prevData, message.value]);
-        setPerformanceLabel(prevData => [...prevData, parseInt(message.Time)]);
+        setPerformanceLabel(prevData => [...prevData, message.Time]);
         console.log("Set performance data")
       }
     }
