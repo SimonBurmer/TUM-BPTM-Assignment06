@@ -76,7 +76,7 @@ def log():
             if "received" in notification["content"]:
                 if "data" in notification["content"]["received"][0]:
                     value = yaml.safe_load(notification["content"]["received"][0]["data"])["value"]
-                    monitor_event = {'Id': notification["content"]["activity"], 'Name': notification["content"]["label"], 'Value': value, 'Time':notification["timestamp"]}
+                    monitor_event = {'Id': notification["content"]["activity"], 'Name': notification["content"]["label"], 'Value': int(value), 'Time':notification["timestamp"]}
                     event_storage.append(monitor_event)
                     print("MONITOR EVENT:")
                     print(monitor_event)
