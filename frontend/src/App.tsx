@@ -7,6 +7,33 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { LineChart } from '@mui/x-charts/LineChart';
 
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+
+
+
+
+
 interface MonitorMessages {
   Id: string;
   value: string;
@@ -62,6 +89,35 @@ function App() {
   }, [message]);
 
 
+
+  const data = {
+    labels: qualityLabel,
+    datasets: [
+      {
+        label: 'Sales',
+        data: qualityData,
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'chartArea' as const,
+      },
+      title: {
+        display: true,
+        text: 'Chart.js Line Chart',
+      },
+    },
+  };
+
+
+
+
   return (
     <div className="App">
       <AppBar position="static" color="primary" enableColorOnDark>
@@ -89,6 +145,7 @@ function App() {
                 xAxis={[{ scaleType: 'point', data: qualityLabel }]}
               />
               <Typography sx={{mt:-2}} variant="subtitle1">Measurements</Typography>
+              <Line data={data} options={options} />
             </Box>
           </Grid>
           <Grid item xs>
