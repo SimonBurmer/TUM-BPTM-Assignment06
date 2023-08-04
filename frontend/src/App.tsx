@@ -9,7 +9,7 @@ import { LineChart } from '@mui/x-charts/LineChart';
 
 interface MonitorMessages {
   Id: string;
-  value: number;
+  value: string;
   Name: string;
   Time: string;
 }
@@ -43,17 +43,17 @@ function App() {
   useEffect(() => {
     if (message) {
       if (message.Id === "a8"){
-        setQualityData(prevData => [...prevData, message.value]);
+        setQualityData(prevData => [...prevData, parseInt(message.value)]);
         setQualityLabel(prevData => [...prevData, "Measurement: " + (qualityLabel.length).toString()]);
         console.log("Set quality data")
       }
       if (message.Id === "a6"){
-        setAvailabilityData(prevData => [...prevData, message.value]);
+        setAvailabilityData(prevData => [...prevData, parseInt(message.value)]);
         setAvailabilityLabel(prevData => [...prevData,"Measurement: " + (availabilityLabel.length).toString()]);
         console.log("Set availability data")
       }
       if (message.Id === "a7"){
-        setPerformanceData(prevData => [...prevData, message.value]);
+        setPerformanceData(prevData => [...prevData, parseInt(message.value)]);
         setPerformanceLabel(prevData => [...prevData,"Measurement: " +(performanceLabel.length).toString()]);
         console.log("Set performance data")
       }
