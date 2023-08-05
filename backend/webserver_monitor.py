@@ -72,7 +72,7 @@ def log():
     
     # I only want to monitor the activities a8,a7,a6
     if "content" in notification and "activity" in notification["content"]:
-        if notification["content"]["activity"] in ["a8","a7","a6"]:
+        if notification["content"]["activity"] in ["a8","a7","a6", "a15"]:
             if "received" in notification["content"]:
                 if "data" in notification["content"]["received"][0]:
                     value = yaml.safe_load(notification["content"]["received"][0]["data"])["value"]

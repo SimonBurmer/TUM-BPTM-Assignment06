@@ -18,6 +18,7 @@ interface MonitorMessages {
 
 function App() {
   const [message, setMessage] = useState<MonitorMessages>();
+  const [OEEThreshold, setOEEThreshold] = useState<number>(0);
   const [qualityData, setQualityData] = useState<number[]>([0]);
   const [qualityLabel, setQualityLabel] = useState<string[]>(["None"]);
   const [availabilityData, setAvailabilityData] = useState<number[]>([0]);
@@ -42,56 +43,29 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log("qualityData: ", qualityData)
-
 
     if (message) {
-      if (message.Id === "a8"){
+      if (message.Id === "a8") {
         setQualityData(prevData => [...prevData, Number(message.Value)]);
         setQualityLabel(prevData => [...prevData, (qualityLabel.length).toString()]);
         console.log("Set quality data")
       }
-      if (message.Id === "a6"){
+      if (message.Id === "a6") {
         setAvailabilityData(prevData => [...prevData, Number(message.Value)]);
-        setAvailabilityLabel(prevData => [...prevData,(availabilityLabel.length).toString()]);
+        setAvailabilityLabel(prevData => [...prevData, (availabilityLabel.length).toString()]);
         console.log("Set availability data")
       }
-      if (message.Id === "a7"){
+      if (message.Id === "a7") {
         setPerformanceData(prevData => [...prevData, Number(message.Value)]);
-        setPerformanceLabel(prevData => [...prevData,(performanceLabel.length).toString()]);
+        setPerformanceLabel(prevData => [...prevData, (performanceLabel.length).toString()]);
         console.log("Set performance data")
+      }
+      if (message.Id === "a15") {
+        setOEEThreshold(Number(message.Value));
+        console.log("Set Threshold")
       }
     }
   }, [message]);
-
-
-
-  const data = {
-    labels: qualityLabel,
-    datasets: [
-      {
-        label: 'Sales',
-        data: qualityData,
-        fill: false,
-        borderColor: 'rgb(75, 192, 192)',
-      },
-    ],
-  };
-
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'chartArea' as const,
-      },
-      title: {
-        display: true,
-        text: 'Chart.js Line Chart',
-      },
-    },
-  };
-
-
 
 
   return (
@@ -105,13 +79,17 @@ function App() {
       </AppBar>
 
       <Box sx={{ m: 8 }} >
-
         <p>Message from the server: {message?.Id}</p>
+
+        <Typography variant="body1">
+          <strong>Current OEE Threshold: {OEEThreshold}</strong>
+          <strong>Current OEE Value: {qualityData[qualityData.length - 1] * availabilityData[qualityData.length - 1] * performanceData[qualityData.length - 1]}</strong>
+        </Typography>
 
         <Grid container spacing={2}>
           <Grid item xs>
             <Box sx={{ borderRadius: '16px', bgcolor: '#E5E4E2' }} >
-              <Typography sx={{mt:2}} variant="h5">Machine Quality</Typography>
+              <Typography sx={{ mt: 2 }} variant="h5">Machine Quality</Typography>
               <LineChart
                 width={500}
                 height={300}
@@ -120,12 +98,12 @@ function App() {
                 ]}
                 xAxis={[{ scaleType: 'point', data: qualityLabel }]}
               />
-              <Typography sx={{mt:-2}} variant="subtitle1">Measurements</Typography>
+              <Typography sx={{ mt: -2 }} variant="subtitle1">Measurements</Typography>
             </Box>
           </Grid>
           <Grid item xs>
             <Box sx={{ borderRadius: '16px', bgcolor: '#E5E4E2' }} >
-              <Typography sx={{mt:2}} variant="h5">Machine Availability</Typography>
+              <Typography sx={{ mt: 2 }} variant="h5">Machine Availability</Typography>
               <LineChart
                 width={500}
                 height={300}
@@ -134,12 +112,12 @@ function App() {
                 ]}
                 xAxis={[{ scaleType: 'point', data: availabilityLabel }]}
               />
-              <Typography sx={{mt:-2}} variant="subtitle1">Measurements</Typography>
+              <Typography sx={{ mt: -2 }} variant="subtitle1">Measurements</Typography>
             </Box>
           </Grid>
           <Grid item xs>
             <Box sx={{ borderRadius: '16px', bgcolor: '#E5E4E2' }} >
-              <Typography sx={{mt:2}} variant="h5">Machine Performance</Typography>
+              <Typography sx={{ mt: 2 }} variant="h5">Machine Performance</Typography>
               <LineChart
                 width={500}
                 height={300}
@@ -148,7 +126,7 @@ function App() {
                 ]}
                 xAxis={[{ scaleType: 'point', data: performanceLabel }]}
               />
-              <Typography sx={{mt:-2}} variant="subtitle1">Measurements</Typography>
+              <Typography sx={{ mt: -2 }} variant="subtitle1">Measurements</Typography>
             </Box>
           </Grid>
         </Grid>

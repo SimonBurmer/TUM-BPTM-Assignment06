@@ -376,8 +376,7 @@ data.performance = result["value"]</finalize>
                 </parameters>
                 <code>
                   <prepare/>
-                  <finalize output="result">result=result.to_h
-data.oee = data.availability * data.quality * data.performance</finalize>
+                  <finalize output="result">data.oee = data.availability * data.quality * data.performance</finalize>
                   <update output="result"/>
                   <rescue output="result"/>
                 </code>
