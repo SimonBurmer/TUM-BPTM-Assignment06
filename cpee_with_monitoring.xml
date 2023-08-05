@@ -158,7 +158,7 @@ data.oeeThres = result["value"]</finalize>
             </code>
           </documentation>
         </call>
-        <loop mode="post_test" condition="data.oeeThres &lt; data.oee">
+        <loop mode="post_test" condition="data.oeeThres.to_f  &gt; data.oee.to_f ">
           <_probability>
             <_probability_min/>
             <_probability_max/>
