@@ -83,7 +83,10 @@ function App() {
 
         <Typography variant="body1">
           <strong>Current OEE Threshold: {OEEThreshold}</strong>
-          <strong>Current OEE Value: {qualityData[qualityData.length - 1] * availabilityData[qualityData.length - 1] * performanceData[qualityData.length - 1]}</strong>
+        </Typography>
+
+        <Typography variant="body1">
+        <strong>Current OEE Value: {qualityData[qualityData.length - 1] * availabilityData[qualityData.length - 1] * performanceData[qualityData.length - 1]}</strong>
         </Typography>
 
         <Grid container spacing={2}>
